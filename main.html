@@ -76,6 +76,9 @@
           timeout = setTimeout(normalbox, 250);
           document.getElementById('sit').innerHTML = "correct"
           total += 1
+           if (total == 10) {
+            alert("congrat");    
+          }
           document.getElementById('nem').value = ""
           document.getElementById('total').innerHTML = String(total)
           newquestion()
