@@ -1,0 +1,139 @@
+<style>
+  .dum{
+    color: rgb(0,0,0);
+    height: 25px;
+    width: 100px;
+    border-radius: 2px;
+    background-color: rgb(100,235,100);
+    position: absolute;
+    right: 20%;
+    
+  }
+  
+  .center_variables {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border: 3px solid green;
+  text-align: center;
+}
+  img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {  
+    position: absolute;
+    right: 40%;
+    height: 25px;
+    width:200px;
+}
+</style>
+
+<input type="checkbox">test</input>
+
+<img id='img' width='150' height='100'></img>
+<br>
+<p id="variables" class="center_variables"> </p>
+<br>
+<input id="nem" class="center"></input>
+<button class="dum" onclick=correct()>CLICK!</button>
+<br>
+<p id="sit" class="center"></p>
+
+<p id="total"></p>
+<button onclick="myFunction()">give answer</button>
+<br>
+<div id = "progress" style="width:0px;height:20px;border:1px solid #32CD32; background-color: #32CD32;"></div>
+
+<script>
+  let timeout
+  var x = 5
+  var y = 7
+  var total = 0
+  var equations = ["F", "KE", "D"]
+  var selected = ""
+  var rand = 0
+  var one = 0
+  var two = 0
+  var three = 0
+  var four = 0
+  var answer
+  
+  newquestion()
+  
+    function myFunction(){
+      document.getElementById('nem').value = String(answer);
+    }
+  
+
+  
+  function correct(){
+    
+    if (parseFloat(document.getElementById('nem').value) == answer){
+          document.getElementById('nem').style.backgroundColor = "lime";
+          timeout = setTimeout(normalbox, 250);
+          document.getElementById('sit').innerHTML = "correct"
+          total += 1
+          document.getElementById('nem').value = ""
+          document.getElementById('total').innerHTML = String(total)
+          newquestion()
+          document.getElementById('progress').style.width = total * window.innerWidth / 10 + "px"
+    } else {
+      document.getElementById('nem').style.backgroundColor = "red";
+      timeout = setTimeout(normalbox, 250);
+      document.getElementById('sit').innerHTML = "incorrect, try again"
+      
+    }
+    
+  function normalbox(){
+    document.getElementById('nem').style.backgroundColor = "white";
+    
+  }
+
+  }
+  
+  function newquestion(){
+    rand = Math.floor(Math.random() * equations.length)
+    console.log(rand)
+    selected = equations[rand]
+    
+    switch (selected){
+      
+      case "KE":
+        document.getElementById('img').src = "https://cdn.kastatic.org/googleusercontent/icz-GGEPNtOeqIXvzHggmqfRA0BM8LxLwgDZ7uszZdwq-quqU3PA3nDcxJHpybqoNPvhH1nqThNI7UUxJCKzxRaFmA"
+        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
+        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        answer = 0.5 * one * Math.pow(two, 2)
+        document.getElementById('variables').innerHTML = "Mass = " + one + "<br>" + " Velocity = " + two
+        
+        break;
+        
+      case "F":
+        document.getElementById('img').src = "https://i.pinimg.com/736x/f1/0b/7f/f10b7f273751430777b0a1cc47aadc0b--science-resources-physics.jpg"
+        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
+        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        answer = one * two
+        document.getElementById('variables').innerHTML = "Mass = " + one + "<br>" + " Acceleration = " + two
+        break;
+      
+      case "D":
+        document.getElementById('img').src = "https://i.pinimg.com/originals/9f/ab/77/9fab77b4c6b38e305b6c7734bafac3b5.png"
+        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
+        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        answer = one / two
+        document.getElementById('variables').innerHTML = "Mass = " + one + "<br>" + " Volume = " + two
+        break;
+        
+      default:
+        console.log("das")
+        break;
+      
+    }
+    
+
+
+  }
+  
+</script>
