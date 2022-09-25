@@ -107,7 +107,7 @@
   var x = 5
   var y = 7
   var total = 0
-  var equations = ["F", "KE", "D"]
+  var equations = ["F", "KE", "D", "Elastic", "charge", "heatcapacity", "ohms", "gravitational", "power"]
   var selected = ""
   var rand = 0
   var one = 0
@@ -161,28 +161,28 @@
     rand = Math.floor(Math.random() * equations.length)
     console.log(rand)
     selected = equations[rand]
-    
-    switch (selected){
-       one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
+      one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
       two = Math.floor(Math.random() * 10 + 1) // same applies ^
       three = Math.floor(Math.random() * 10 + 1)
+    switch (selected){
+
       case "KE":
         document.getElementById('img').src = "images/Ke.png"
         answer = 0.5 * one * Math.pow(two, 2)
-        document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
+        document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> when <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
         
         break;
         
       case "F":
         document.getElementById('img').src = "images/force.jpg"
         answer = one * two
-        document.getElementById('variables').innerHTML = "Calculate the <b>Force</b> <br>" + "Mass = " + one + "<br>" + " Acceleration = " + two
+        document.getElementById('variables').innerHTML = "Calculate the <b>Force</b> when <br>" + "Mass = " + one + "<br>" + " Acceleration = " + two
         break;
       
       case "D":
         document.getElementById('img').src = "images/Density.png"
         answer = one / two
-        document.getElementById('variables').innerHTML = "Calculate the <b>Density</b> <br>" + "Mass = " + one + "<br>" + " Volume = " + two
+        document.getElementById('variables').innerHTML = "Calculate the <b>Density</b> when <br>" + "Mass = " + one + "<br>" + " Volume = " + two
         break;
 
         case "Elastic":
@@ -197,7 +197,7 @@
       answer = one / two
       break;
         case "heatcapacity":
-            document.getElementById('img').src = "images/heatcapactiy.png"
+            document.getElementById('img').src = "images/heatcapacity.png"
       document.getElementById('variables').innerHTML = "Calculate the <b>Energy Transfered</b> when <br>" + " Mass = " + one + "<br> Change in temperature = " + two + "<br> Specific Heat Capacity = 4200J/Kg"
       answer = one * two * 4200
       break;
@@ -208,7 +208,7 @@
       break;
         case "gravitational":
             document.getElementById('img').src = "images/MGH.png"
-      document.getElementById('variables').innerHTML = "Calculate the <b> </b> when <br>" + "Mass = " + one + "<br> Mass = " + two + "<br> gravity = 10N"
+      document.getElementById('variables').innerHTML = "Calculate the <b>Gravitational Potential Energy </b> when <br>" + "Mass = " + one + "<br> Mass = " + two + "<br> gravity = 10N"
       answer = one * two * 10
       break;
         case "power":
