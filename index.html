@@ -1,6 +1,23 @@
 <style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    } 
+    .topnav {
+        background-color: gray;
+        overflow: hidden;
+    }
+    .topnav a {
+         float: left;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 10px 16px;
+         text-decoration: none;
+         font-size: 17px;
+        }
+
   .dum{
-    color: rgb(0,255,0);
+    color: rgb(0,0,0);
     height: 25px;
     width: 10%;
     border-radius: 10px;
@@ -52,15 +69,24 @@
 }
 
  body{
-  background-image: url('https://digitalsynopsis.com/wp-content/uploads/2017/02/beautiful-color-gradients-backgrounds-030-happy-fisher.png');
+  background-image: url('images/background_temp.png');
   background-repeat: no-repeat; 
   background-attachment: fixed;
   background-size: 100% 100%;
 }
 </style>
 
-<input type="checkbox">test</input>
+<div class="topnav">
+    <a>Customise(later)</a>
+</div>
 
+<html>
+<input type="checkbox">test</input>
+<div class="progressbar">
+    <div style=" width: 100%; height: 26px; border: 1px white; background-color: white; border-radius: 2px;"></div>
+    <div id="progress" style="margin-top: -25px; width: 0px; height: 20px; border: 1px solid black; background-color: blue; border-radius: 2px; transition: width 0.5s; box-shadow: 3px 2px 2px black "></div>
+</div>
+<br>
 <img id='img' width='150' height='100'></img>
 <br>
 <p id="variables" class="center_variables"> </p>
@@ -73,8 +99,8 @@
 <p id="total"></p>
 <button onclick="myFunction()" class="secret">give answer</button>
 <br>
-<div id = "progress" style="width:0px;height:20px;border:1px solid #32CD32; background-color: lime; border-radius: 2px; transition: width 0.5s; box-shadow: 3px 2px 2px black "></div>
-<br>
+
+</html>
 
 <script>
   let timeout
@@ -89,7 +115,7 @@
   var three = 0
   var four = 0
   var answer
-  
+  var max_total = 10
   newquestion()
   
     function myFunction(){
@@ -103,12 +129,15 @@
     if (parseFloat(document.getElementById('nem').value) == answer){
           document.getElementById('nem').style.backgroundColor = "lime";
           timeout = setTimeout(normalbox, 250);
-          document.getElementById('sit').innerHTML = "correct"
-          total += 1
+        document.getElementById('sit').innerHTML = "correct"
+        total += 1
           document.getElementById('nem').value = ""
           document.getElementById('total').innerHTML = String(total)
-          newquestion()
-          document.getElementById('progress').style.width = total * window.innerWidth / 10 + "px"
+        newquestion()
+        if (total <= 10) {
+            document.getElementById('progress').style.width = total * window.innerWidth / max_total + "px"
+        }
+        
     } else {
       document.getElementById('nem').style.backgroundColor = "red";
       timeout = setTimeout(normalbox, 250);
@@ -134,32 +163,59 @@
     selected = equations[rand]
     
     switch (selected){
-      
+       one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
+      two = Math.floor(Math.random() * 10 + 1) // same applies ^
+      three = Math.floor(Math.random() * 10 + 1)
       case "KE":
-        document.getElementById('img').src = "https://cdn.kastatic.org/googleusercontent/icz-GGEPNtOeqIXvzHggmqfRA0BM8LxLwgDZ7uszZdwq-quqU3PA3nDcxJHpybqoNPvhH1nqThNI7UUxJCKzxRaFmA"
-        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
-        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        document.getElementById('img').src = "images/Ke.png"
         answer = 0.5 * one * Math.pow(two, 2)
         document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
         
         break;
         
       case "F":
-        document.getElementById('img').src = "https://i.pinimg.com/736x/f1/0b/7f/f10b7f273751430777b0a1cc47aadc0b--science-resources-physics.jpg"
-        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
-        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        document.getElementById('img').src = "images/force.jpg"
         answer = one * two
         document.getElementById('variables').innerHTML = "Calculate the <b>Force</b> <br>" + "Mass = " + one + "<br>" + " Acceleration = " + two
         break;
       
       case "D":
-        document.getElementById('img').src = "https://i.pinimg.com/originals/9f/ab/77/9fab77b4c6b38e305b6c7734bafac3b5.png"
-        one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
-        two = Math.floor(Math.random() * 10 + 1) // same applies ^
+        document.getElementById('img').src = "images/Density.png"
         answer = one / two
         document.getElementById('variables').innerHTML = "Calculate the <b>Density</b> <br>" + "Mass = " + one + "<br>" + " Volume = " + two
         break;
-        
+
+        case "Elastic":
+            document.getElementById('img').src = "images/elastic.png"
+            document.getElementById('variables').innerHTML = "Calculate the <b>Elastic Potential Energy</b> when <br>" + "Spring constant = " + one + "<br> Extention = " + two
+            two = two ** 2
+            answer = 0.5 * one * two
+      break;
+        case "charge":
+            document.getElementById('img').src = "images/charge.png"
+      document.getElementById('variables').innerHTML = "Calculate the <b>Current</b> when <br>" + "Coulombs transfered = " + one + "<br> time taken = " + two
+      answer = one / two
+      break;
+        case "heatcapacity":
+            document.getElementById('img').src = "images/heatcapactiy.png"
+      document.getElementById('variables').innerHTML = "Calculate the <b>Energy Transfered</b> when <br>" + " Mass = " + one + "<br> Change in temperature = " + two + "<br> Specific Heat Capacity = 4200J/Kg"
+      answer = one * two * 4200
+      break;
+        case "ohms":
+            document.getElementById('img').src = "images/volt.png"
+      document.getElementById('variables').innerHTML = "Calculate the <b>Voltage</b> when <br>" + "Current = " + one + "<br> Resistance = " + two
+      answer = one * two
+      break;
+        case "gravitational":
+            document.getElementById('img').src = "images/MGH.png"
+      document.getElementById('variables').innerHTML = "Calculate the <b> </b> when <br>" + "Mass = " + one + "<br> Mass = " + two + "<br> gravity = 10N"
+      answer = one * two * 10
+      break;
+        case "power":
+            document.getElementById('img').src = "images/power.png"
+      document.getElementById('variables').innerHTML = "Calculate the <b>Power</b> when <br>" + "Energy transfered = " + one + "<br> Time Taken = " + two
+      answer = one / two
+      break;
       default:
         console.log("das")
         break;
