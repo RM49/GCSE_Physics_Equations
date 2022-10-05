@@ -59,15 +59,15 @@ img {
     transition: background-color 0.5s;
 }
 
-.secret {
-    opacity: 0;
+/*.secret {
+    opacity: 0; 
     transition: opacity 0.15s;
 }
 
     .secret:hover {
         opacity: 1;
     }
-
+*/
 body {
     background-image: url('../images/background_temp.png');
     background-repeat: no-repeat;
