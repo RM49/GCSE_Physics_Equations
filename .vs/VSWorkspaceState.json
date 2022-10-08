@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "\\images",
+    "\\js",
+    "\\styles"
   ],
   "PreviewInSolutionExplorer": false
 }

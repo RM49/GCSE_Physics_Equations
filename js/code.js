@@ -12,6 +12,20 @@ var four = 0
 var answer
 var attempts = 0
 var max_total = 10
+
+const params = new URLSearchParams(window.location.search)
+var field = 'thing';
+var url = window.location.href;
+if (url.indexOf('?' + field + '=') != -1) {
+    
+    let stuff = document.location.search.replace(/^.*?\=/, "")
+    console.log(stuff)
+    equations = stuff.split(",")
+    console.log(equations)
+}
+
+
+
 newquestion()
 
 function myFunction() {
@@ -28,7 +42,7 @@ function ClosePopUp() {
 
 function correct() {
 
-    if (parseFloat(document.getElementById('AnswerInput').value) == answer) {
+    if (parseFloat(document.getElementById('AnswerInput').value) == answer) { 
         document.getElementById('AnswerInput').style.backgroundColor = "lime";
         timeout = setTimeout(normalbox, 250);
         document.getElementById('sit').innerHTML = "correct"
@@ -66,7 +80,7 @@ function correct() {
     function Complete() {
 
         document.getElementById('popUp').style.display = "block";
-        document.getElementById('PopUpTotal').innerHTML = "Total: " + total + " with " + attempts + " attempts";
+        document.getElementById('PopUpTotal').innerHTML = "Total: " + total + " with " + attempts + " attempts" + "<br>" + "Including" + equations;
         total = 0
         attempts = 0
 
