@@ -99,10 +99,35 @@ function newquestion() {
     three = Math.floor(Math.random() * 10 + 1)
     switch (selected) {
 
-        case "KE":
+        case "KE": // testing different arrangements of the equation.
+            chance = Math.floor(Math.random() * 5)
             document.getElementById('img').src = "./images/Ke.png"
-            answer = 0.5 * one * Math.pow(two, 2)
-            document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> when <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
+            console.log("chance = " + chance)
+            if (chance <= 2) {
+
+                answer = 0.5 * one * Math.pow(two, 2)
+                document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> when <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
+
+            }
+
+            if (chance == 3) {
+                // mass is subject
+                KE = Math.floor(Math.random() * 1000) + 1
+                KE = KE * 100
+                answer = Math.round((KE * 2) / Math.pow(one, 2))
+                document.getElementById('variables').innerHTML = "Calculate the <b>Mass</b> when <br>" + "Kinetic Energy = " + KE + "<br>" + " Velocity = " + one
+
+            }
+
+            if (chance >= 4) {
+                // velocity is subject, one is mass
+                KE = Math.floor(Math.random() * 1000) + 1
+                KE = KE * 100
+                answer = Math.round(Math.sqrt(Math.floor((KE * 2) / one)))
+                document.getElementById('variables').innerHTML = "Calculate the <b>Velocity</b> when <br>" + "Kinetic Energy = " + KE + "<br>" + " Mass = " + one
+
+            }
+
 
             break;
 
