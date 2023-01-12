@@ -1,0 +1,13 @@
+23 equations
+Each can be represnted by a number
+1 = [1, 2, 3] // Kinetic Energy
+Where each item in the list represents a variation of the equation
+2 = [1, 2]
+...
+
+Equations = [[1,2,3], [1,2], [1,2,3]]
+etc...
+
+When equations are chosen, a duplicate of the list is made.
+Then randomly selects, promps and delets each index of the "linked list"?.
+Once there is nothing in the Equations list the questions are over.

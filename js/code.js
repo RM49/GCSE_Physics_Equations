@@ -1,6 +1,4 @@
 let timeout
-var x = 5
-var y = 7
 var total = 0
 var equations = ["F", "KE", "D", "Elastic", "charge", "heatcapacity", "ohms", "gravitational", "power"]
 var selected = ""
@@ -11,8 +9,9 @@ var three = 0
 var four = 0
 var answer
 var attempts = 0
-var max_total = 10
+var max_total = 10 // hio
 
+// this part of the code takes the chosen equations sent via the url from the customise page
 const params = new URLSearchParams(window.location.search)
 var field = 'thing';
 var url = window.location.href;
@@ -25,33 +24,32 @@ if (url.indexOf('?' + field + '=') != -1) {
 }
 
 
+// starts by generating a question
+NewQuestion()
 
-newquestion()
-
-function myFunction() {
+function Cheat() {
     document.getElementById('AnswerInput').value = String(answer);
 }
 
 function ClosePopUp() {
-    console.log("cloidsnio")
-    document.getElementById('popUp').style.display = "none";
-    document.getElementById('total').innerHTML = String(total)
-    document.getElementById('progress').style.width = total * window.innerWidth / 10 + "px"
+    document.getElementById('popUp').style.display = "none"; // removes pop up
+    document.getElementById('total').innerHTML = String(total) // resets score
+    document.getElementById('progress').style.width = total * window.innerWidth / 10 + "px" // resets progress bar
 }
 
 
-function correct() {
-
+function Answer() {
+    // if the answer is correct
     if (parseFloat(document.getElementById('AnswerInput').value) == answer) { 
         document.getElementById('AnswerInput').style.backgroundColor = "lime";
-        timeout = setTimeout(normalbox, 250);
-        document.getElementById('sit').innerHTML = "correct"
+        timeout = setTimeout(ResetAnswerBoxColour, 250);
+        document.getElementById('sit').innerHTML = "Correct!"
         total += 1
         attempts += 1
         document.getElementById('AnswerInput').value = ""
         document.getElementById('total').innerHTML = String(total)
-        newquestion()
-        console.log(total)
+        NewQuestion()
+ 
         if (total <= 10) {
             document.getElementById('progress').style.width = total * window.innerWidth / max_total + "px"
         }
@@ -60,51 +58,52 @@ function correct() {
             Complete()
         }
 
+        // if it is not correct
     } else {
         document.getElementById('AnswerInput').style.backgroundColor = "red";
-        timeout = setTimeout(normalbox, 250);
+        timeout = setTimeout(ResetAnswerBoxColour, 250);
+
         if (total >= 1) {
             total -= 1
         }
+
         document.getElementById('total').innerHTML = String(total)
         document.getElementById('progress').style.width = total * window.innerWidth / 10 + "px"
         document.getElementById('sit').innerHTML = "incorrect, try again"
 
     }
 
-    function normalbox() {
-        document.getElementById('AnswerInput').style.backgroundColor = "white";
+}
 
-    }
+function ResetAnswerBoxColour() {
+    document.getElementById('AnswerInput').style.backgroundColor = "white";
 
-    function Complete() {
+}
+function Complete() {
 
-        document.getElementById('popUp').style.display = "block";
-        document.getElementById('PopUpTotal').innerHTML = "Total: " + total + " with " + attempts + " attempts" + "<br>" + "Including" + equations;
-        total = 0
-        attempts = 0
-
-    }
+    document.getElementById('popUp').style.display = "block";
+    document.getElementById('PopUpTotal').innerHTML = "Total: " + total + " with " + attempts + " attempts" + "<br>" + "Including " + equations;
+    total = 0
+    attempts = 0
 
 }
 
-
-/*dkjafjkdsfhldjkfh comment */
-function newquestion() {
+function NewQuestion() {
     rand = Math.floor(Math.random() * equations.length)
-    console.log(rand)
-    selected = equations[rand]
+    selected = equations[rand] // these two lines pick a random equation id out of the list
     one = Math.floor(Math.random() * 10 + 1) // + 1 stops zero, change 10 to range wanted
     two = Math.floor(Math.random() * 10 + 1) // same applies ^
     three = Math.floor(Math.random() * 10 + 1)
+
     switch (selected) {
 
         case "KE": // testing different arrangements of the equation.
+
             chance = Math.floor(Math.random() * 5)
             document.getElementById('img').src = "./images/Ke.png"
             console.log("chance = " + chance)
             if (chance <= 2) {
-
+                // KE is subject
                 answer = 0.5 * one * Math.pow(two, 2)
                 document.getElementById('variables').innerHTML = "Calculate the <b>Kinetic Energy</b> when <br>" + "Mass = " + one + "<br>" + " Velocity = " + two
 
@@ -128,10 +127,10 @@ function newquestion() {
 
             }
 
-
             break;
 
         case "F":
+
             document.getElementById('img').src = "./images/force.jpg"
             answer = one * two
             document.getElementById('variables').innerHTML = "Calculate the <b>Force</b> when <br>" + "Mass = " + one + "<br>" + " Acceleration = " + two
