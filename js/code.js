@@ -1,5 +1,6 @@
 let timeout
 var total = 0
+var equations = ["ACCELERATION", "CHARGECURRENTTIME", "DENSITY", "ELASTIC", "ENERGYPOWERTIME", "FORCE", "GRAVITY", "KINETIC", "LATENTHEAT", "MOMENT", "MOMENTUM", "POWER", "POWERIR", "POWERIV", "PRESSURE", "SPECIFICHEATCAPACITY", "SPRINGCONSTANT", "VELOCITY", "VIR", "WAVELENGTH", "WEIGHT", "WORKFORCEDISTANCE"]
 var equations = ["F", "KE", "D", "Elastic", "charge", "heatcapacity", "ohms", "gravitational", "power"]
 var selected = ""
 var rand = 0
@@ -114,6 +115,10 @@ function Complete() {
     attempts = 0
 
 }
+function ChangeImage(equation) {
+    document.getElementById('img').src = "./assets/" + equation + ".png"
+    }
+
 
 function NewQuestion() {
     rand = Math.floor(Math.random() * equations.length)
