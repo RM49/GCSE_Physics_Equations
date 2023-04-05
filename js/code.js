@@ -12,7 +12,7 @@ var answer
 var attempts = 0
 var max_total = 10 // hio
 
-var QuestionQueue = ["KE1", "KE2", "KE3", "F1", "F2", "F3", "D1", "D2", "D3"]
+var QuestionQueue = ["KE1", "KE2", "KE3", "F1", "F2", "F3", "D1", "D2", "D3", "O1", "O2", "O3", "G1", "G2", "G3", "G4", "P1", "P2", "P3", "EL1", "EL2", "EL3"];
 var Mode = "Random1" // or "Normal"
 var step = 0
 
@@ -252,6 +252,9 @@ function QueuedQuestion() {
     two = Math.floor(Math.random() * 10 + 1) // same applies ^
     three = Math.floor(Math.random() * 10 + 1)
 
+
+
+   
     switch (currentQuestion) {
 
         case "KE1":
@@ -320,6 +323,114 @@ function QueuedQuestion() {
             answer = one / two
             document.getElementById('variables').innerHTML = "Calculate the <b>Volume</b> when <br>" + "Mass = " + one + "<br>" + " Density = " + two
             break;
+
+
+        case "O1":
+            // voltage is subject
+            document.getElementById('img').src = "./assets/VIR.png";
+            answer = one * two;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Voltage</b> when <br>" + "Current = " + one + "<br>" + " Resistance = " + two;
+            break
+
+        case "O2":
+            // current is subject
+            document.getElementById('img').src = "./assets/VIR.png";
+            answer = one / two;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Current</b> when <br>" + "Voltage = " + one + "<br>" + " Resistance = " + two;
+            break;
+
+        case "O3":
+            // resistance is subject
+            document.getElementById('img').src = "./assets/VIR.png";
+            answer = one / two;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Resistance</b> when <br>" + "Voltage = " + one + "<br>" + " Current = " + two;
+            break;
+
+        case "G1":
+            // Energy is subject
+            document.getElementById('img').src = "./assets/GRAVITY.png";
+            answer = one * two * three;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Energy</b> when <br>" + "Mass = " + one + "<br>" + " Gravity = " + two + "<br>" + " Height = " + three;
+            break;
+
+        case "G2":
+            // Mass is subject
+            document.getElementById('img').src = "./assets/GRAVITY.png";
+            answer = one / (two * three);
+            document.getElementById('variables').innerHTML = "Calculate the <b>Mass</b> when <br>" + "Energy = " + one + "<br>" + " Gravity = " + two + "<br>" + " Height = " + three;
+            break;
+
+        case "G3":
+            // Gravity is subject
+            document.getElementById('img').src = "./assets/GRAVITY.png";
+            answer = one / (two * three);
+            document.getElementById('variables').innerHTML = "Calculate the <b>Gravity</b> when <br>" + "Energy = " + one + "<br>" + " Mass = " + two + "<br>" + " Height = " + three;
+            break;
+
+        case "G4":
+            // Height force is subject
+            document.getElementById('img').src = "./assets/GRAVITY.png";
+            answer = one / (two * three);
+            document.getElementById('variables').innerHTML = "Calculate the <b>Height</b> when <br>" + "Energy = " + one + "<br>" + " Mass = " + two + "<br>" + " Gravity = " + three;
+            break;
+
+        case "P1":
+            // power is subject
+            document.getElementById('img').src = "./assets/POWER.png";
+            answer = one / two;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Power</b> when <br>" + "Work done / energy = " + one + "<br>" + " Time taken = " + two;
+            break;
+
+        case "P2":
+            // work is subject
+            document.getElementById('img').src = "./assets/POWER.png";
+            answer = one * two;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Work done / Energy transfered</b> when <br>" + "Power = " + one + "<br>" + " Time = " + two;
+            break;
+
+        case "P3":
+            // time is subject
+            document.getElementById('img').src = "./assets/POWER.png";
+            answer = two / one;
+            document.getElementById('variables').innerHTML = "Calculate the <b>Time Taken</b> when <br>" + "Power = " + one + "<br>" + " Work done = " + two;
+            break;
+
+        case "EL1":
+            // Energy is subject
+            document.getElementById('img').src = "./assets/ELASTIC.png";
+            answer = 0.5 * one * Math.pow(two, 2);
+            document.getElementById('variables').innerHTML = "Calculate the <b>Elastic potential energy</b> when <br>" + "Spring constant = " + one + "<br>" + " Extension = " + two;
+            break;
+
+        case "EL2":
+            // Spring constant is subject
+            document.getElementById('img').src = "./assets/ELASTIC.png";
+            KE = Math.floor(Math.random() * 1000) + 1
+            KE = KE * 100
+            answer = Math.round((KE * 2) / Math.pow(one, 2))
+            document.getElementById('variables').innerHTML = "Calculate the <b>Spring constant</b> when <br>" + "Elastic potential energy = " + one + "<br>" + " Extension = " + two;
+            break;
+
+        case "EL3":
+            // Extension is subject
+            document.getElementById('img').src = "./assets/ELASTIC.png";
+            KE = Math.floor(Math.random() * 1000) + 1
+            KE = KE * 100
+            answer = Math.round(Math.sqrt(Math.floor((KE * 2) / one)))
+            document.getElementById('variables').innerHTML = "Calculate the <b>Extension</b> when <br>" + "Elastic potential energy = " + one + "<br>" + "Spring constant = " + two;
+            break;
+
+
+
+
+
+
+        //case "":
+            // volume is subject
+            //document.getElementById('img').src = "./images/_.png"
+            //answer = //
+            //document.getElementById('variables').innerHTML = "Calculate the <b>_</b> when <br>" + "_ = " + one + "<br>" + " _ = " + two
+            // break;
 
         default:
             console.log("der")
